@@ -1,0 +1,16 @@
+.Barra, .main-sidebar{
+    background-image: linear-gradient(to right, #061f47, #062555, #062452, #082450, #082657);
+    height: calc(100% - (3.5rem + 1px));
+    overflow-y: auto;
+    padding-bottom: 0;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    padding-top: 0;
+}
+.Titulo{
+    background-image: linear-gradient(to right bottom, #296fde, #5666e4, #7d58e4, #a142df, #c213d3);
+}
+.titulo_letra{
+    
+    text-align: center;
+}
