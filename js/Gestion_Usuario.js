@@ -6,7 +6,7 @@ $(document).ready(function(){
     } else {
       
     }
-    buscar_datos()
+    buscar_datos();
     var funcion
     //Funcion para buscar usuarios por nombre
     function buscar_datos(consulta) {
@@ -16,10 +16,20 @@ $(document).ready(function(){
             let template='';
             usuarios.forEach(usuario=>{
                 template +=`
-                <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                <div usuarioId="${usuario.id}" class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
               <div class="card bg-light">
-                <div class="card-header text-muted border-bottom-0">
-                  ${usuario.tipo}
+                <div class="card-header text-muted border-bottom-0">`
+                //Cambia colores al tipo de usuario <<Rojo al root, amarillo administrador, tecnico celeste>>//
+                  if (usuario.tipo_usuario==3) {
+                    template+=`<h1 class="badge badge-danger">${usuario.tipo}</h1>`;
+                  }
+                  if (usuario.tipo_usuario==1) {
+                    template+=`<h1 class="badge badge-warning">${usuario.tipo}</h1>`;
+                  }
+                  if (usuario.tipo_usuario==2) {
+                    template+=`<h1 class="badge badge-info">${usuario.tipo}</h1>`;
+                  }
+                  template+=`
                 </div>
                 <div class="card-body pt-0">
                   <div class="row">
@@ -43,19 +53,26 @@ $(document).ready(function(){
                 //Bloque de codido que se encarga de mostrar el boton eliminar solo a los usuarios requeridos
                 if (tipo_usuario==3) {
                   if (usuario.tipo_usuario!=3) {
-                    template+=` <button class="btn btn-danger mr-1">
+                    template+=` <button class="eliminar-usuario btn btn-danger mr-1" type="button" data-toggle="modal" data-target="#confirmar">
                     <i class="fas fa-window-close mr-1"></i>Eliminar
                     </button>`;
                   }
                   if (usuario.tipo_usuario==2) {
-                    template+=` <button class="btn btn-primary ml-1">
-                    <i class="fas fa-window-close mr-1"></i>Ascender
+                    template+=` <button class="ascender btn btn-primary ml-1" type="button" data-toggle="modal" data-target="#confirmar">
+                    <i class="fas fa-sort-amount-up mr-1"></i>Ascender
                     </button>`;
+                  }
+                  if (usuario.tipo_usuario==1) {
+                    template+=` <button class="descender btn btn-secondary ml-1" type="button" data-toggle="modal" data-target="#confirmar">
+                    <i class="fas fa-sort-amount-down mr-1"></i>Descender
+                    </button>`;
+                  } else {
+                    
                   }
                 } else {
                   if (tipo_usuario==1 && usuario.tipo_usuario!=1 && usuario.tipo_usuario!=3) {
                     template+=` <button class="btn btn-danger">
-                    <i class="fas fa-window-close mr-1"></i>Eliminar
+                    <i class="eliminar-usuario fas fa-window-close mr-1" type="button" data-toggle="modal" data-target="#confirmar"></i>Eliminar
                     </button>`;
                   }
                 }
@@ -81,6 +98,8 @@ $(document).ready(function(){
             buscar_datos();
         }
     });
+
+    //bloque de codigo que crea un nuevo usuario
     $('#crearusuario').submit(e=>{
         let nombre = $('#nombre').val();
         let apellido = $('#apellido').val();
@@ -104,4 +123,53 @@ $(document).ready(function(){
         });
         e.preventDefault();
     });
+
+    //bloque de codigo que obtiene el id del usuario a ascender o descender de rango
+    $(document).on('click','.ascender',(e)=>{
+      const elemento= $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+      const id=$(elemento).attr('usuarioId');
+      funcion='ascender';
+      $('#id_user').val(id);
+      $('#funcion').val(funcion);
+    })
+
+    $(document).on('click','.descender',(e)=>{
+      const elemento= $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+      const id=$(elemento).attr('usuarioId');
+      funcion='descender';
+      $('#id_user').val(id);
+      $('#funcion').val(funcion);
+      });
+
+    $('#form-confirmar').submit(e=>{
+      let pass=$('#oldpass').val();
+      let id_usuario=$('#id_user').val();
+      funcion=$('#funcion').val();
+      $.post('../controlador/UsuarioController.php', {pass,id_usuario,funcion},(response)=>{
+        //alerta del modal
+        if (response=='ascendido' || response=='descendido' || response=='eliminado') {       
+          $('#confirmado').hide('slow');
+          $('#confirmado').show(200);
+          $('#confirmado').hide(5000);
+          $('#form-confirmar').trigger('reset');
+        }else{
+          $('#rechazado').hide('slow');
+          $('#rechazado').show(200);
+          $('#rechazado').hide(5000);
+          $('#form-confirmar').trigger('reset');
+        }
+        //Fin de alerta del modal
+        buscar_datos();
+      });
+      e.preventDefault();
+    });
+
+    //evento eliminar
+    $(document).on('click','.eliminar-usuario',(e)=>{
+      const elemento= $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+      const id=$(elemento).attr('usuarioId');
+      funcion='eliminar_usuario';
+      $('#id_user').val(id);
+      $('#funcion').val(funcion);
+      });
 })

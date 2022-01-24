@@ -21,7 +21,16 @@ $(document).ready(function(){
       apellidos+=`${usuario.apellidos}`;
       edad+=`${usuario.edad}`;
       dui+=`${usuario.dui}`;
-      tipo+=`${usuario.tipo}`;
+      //Cambia colores al tipo de usuario <<Rojo al root, amarillo administrador, tecnico celeste>>//
+      if (usuario.tipo=='Root') {
+        tipo+=`<h1 class="badge badge-danger">${usuario.tipo}</h1>`;
+      }
+      if (usuario.tipo=='Admin') {
+        tipo+=`<h1 class="badge badge-warning">${usuario.tipo}</h1>`;
+      }
+      if (usuario.tipo=='Tecnico') {
+        tipo+=`<h1 class="badge badge-info">${usuario.tipo}</h1>`;
+      }
       telefono+=`${usuario.telefono}`;
       residencia+=`${usuario.residencia}`;
       correo+=`${usuario.correo}`;

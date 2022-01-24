@@ -106,6 +106,7 @@ if ($_POST['funcion']=='cambiar_foto') {
         $edad=$nacimiento->diff($fecha_actual);
         $edad_years = $edad->y;
         $json[]=array(
+            'id'=>$objeto->id_usuario, 
             'nombre'=>$objeto->nombre_us,
             'apellidos'=>$objeto->apellido_us,
             'edad'=>$edad_years,
@@ -123,6 +124,8 @@ if ($_POST['funcion']=='cambiar_foto') {
     $jsonstring = json_encode($json);
     echo $jsonstring;
 }   
+
+//Metodo de crear usuario 
 if ($_POST['funcion']=='crear_usuario') {
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
@@ -132,6 +135,24 @@ if ($_POST['funcion']=='crear_usuario') {
     $tipo=2;
     $foto='genericuser.png';
     $usuario->crear($nombre,$apellido,$edad,$dui,$pass,$tipo,$foto);
+}
 
+//Metodo post de ascender y descender
+if ($_POST['funcion']=='ascender') {
+    $pass=$_POST['pass'];
+    $id_ascendido=$_POST['id_usuario'];
+    $usuario->ascender($pass,$id_ascendido, $id_usuario);
+}
+if ($_POST['funcion']=='descender') {
+    $pass=$_POST['pass'];
+    $id_descendido=$_POST['id_usuario'];
+    $usuario->descender($pass,$id_descendido, $id_usuario);
+}
+
+//Metodo Delete de usuario
+if ($_POST['funcion']=='eliminar_usuario') {
+    $pass=$_POST['pass'];
+    $id_eliminado=$_POST['id_usuario'];
+    $usuario->eliminar($pass,$id_eliminado, $id_usuario);
 }
 ?>

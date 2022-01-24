@@ -110,9 +110,6 @@ if ($_SESSION['us_tipo']==1||$_SESSION['us_tipo']==3) {
 <!--Fin Modal-->
 <!--************************************************************************-->
 
-
-
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -167,7 +164,7 @@ if ($_SESSION['us_tipo']==1||$_SESSION['us_tipo']==3) {
                                                 </li>   
                                                 <li class="list-group-item">
                                                 <b style="color:#A60DAB">Tipo Usuario</b>
-                                                    <span id="us_tipo" class="float-right badge badge-primary">Administrador</span>
+                                                    <span id="us_tipo" class="float-right">Null</span>
                                                 </li>
                                                 <button data-toggle="modal" data-target="#cambiarcontra" type="button" class="btn btn-block btn-outline-warning btn-sm" >Cambiar contraseña</button>
                                              </ul>

@@ -7,7 +7,62 @@ if ($_SESSION['us_tipo']==1||$_SESSION['us_tipo']==3||$_SESSION['us_tipo']==2) {
   <?php 
   include_once 'layouts/nav.php';
   ?>
- 
+
+ <!-- Modal de Confirmacion de ascenso de usuario-->
+<div class="modal fade" id="confirmar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmar contraseña</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><i class="fas fa-times m-1"></i></button>
+      </div>
+      
+      <div class="modal-body">
+  <div class="text-center">
+    <img id='fotoPerfil3' src="../Img/foto.jpg" class="profile-user-img img-fluid img-circle">
+  </div>
+  <div class="text-center">
+    <b>
+        <?php
+            echo $_SESSION['nombre_us'];
+        ?>
+    </b>
+  </div>
+  <span>Ingrese la contraseña para continuar...</span>
+  <!--Mensaje de Alerta-->
+  <div class="alert alert-success text-center" id="confirmado" style='display:none;'>
+       <span><i class="fas fa-check m-1"></i>¡Se modifico el usuario correctamente!</span>
+  </div>
+  <!--Mensaje de Alerta-->
+   <div class="alert alert-danger text-center" id="rechazado" style='display:none;'>
+        <span><i class="fas fa-times m-1"></i>¡Error!, ¡contraseña actual es incorrecta!</span>
+   </div>               
+   <!--Formulario de confirmacion de contaseñas-->          
+    <form id="form-confirmar">
+    <dib class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
+        </div>
+            <input id="oldpass" type="password" class="form-control" placeholder="Ingrese la contraseña actual">
+            <input type="hidden" id="id_user">
+            <input type="hidden" id="funcion">
+    </dib>      
+ <!--Footer del modal-->
+    </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-outline-success">Guardar</button>
+               </form>  
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 <!--*******************************************************************-->
 <!--Modal de creacion de nuevo usuario-->
  <!-- Modal -->
