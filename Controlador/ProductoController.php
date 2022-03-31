@@ -27,8 +27,6 @@ if ($_POST['funcion']=='buscar') {
             'tipo'=>$objeto->tipo,
             'presentacion'=>$objeto->presentacion,
             'avatar'=>'../img/'.$objeto->avatar,
-            
-
         );
     }
     $jsonstring = json_encode($json);

@@ -58,11 +58,6 @@ if ($_SESSION['us_tipo']==1||$_SESSION['us_tipo']==3||$_SESSION['us_tipo']==2) {
   </div>
 </div>
 
-
-
-
-
-
 <!--*******************************************************************-->
 <!--Modal de creacion de nuevo usuario-->
  <!-- Modal -->
@@ -140,7 +135,8 @@ if ($_SESSION['us_tipo']==1||$_SESSION['us_tipo']==3||$_SESSION['us_tipo']==2) {
             </ol>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.container-fluid -->
     </section>  
     <!--Apartado donde se veran y buscaran los usuarios-->
     <section>

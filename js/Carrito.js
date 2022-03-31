@@ -82,7 +82,7 @@ $(document).ready(function(){
     })
 
 
-    ////MANDA DATOS A VISTA CONFIRMAR COMPRA
+    //MANDA DATOS A VISTA CONFIRMAR COMPRA
     $(document).on('click','#procesarPedido', (e)=>{
         Procesar_Pedido();
     })

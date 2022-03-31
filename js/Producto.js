@@ -5,6 +5,7 @@ $(document).ready(function() {
     rellenar_tipos();
     rellenar_presentaciones();
     buscar_producto();
+    
     function rellenar_linea() {
         funcion="rellenar_linea";
         $.post('../Controlador/LineaController.php',{funcion},(response)=>{

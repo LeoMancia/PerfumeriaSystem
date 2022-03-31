@@ -55,6 +55,8 @@ class Usuario{
         return $this->objetos;
     }
 
+
+    //Metodo Get para usuarios
     function buscar(){
         if (!empty($_POST['consulta'])) {
             $consulta = $_POST['consulta'];

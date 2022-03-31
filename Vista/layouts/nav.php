@@ -40,6 +40,7 @@
         <img src="../Img/shopping-cart.png" class="imagen-carrito nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span id="contador" class="contador badge badge-danger"></span>  
       </img>
+
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <table class="carro table table-hover text-nowrap p-0">
             <thead class="table-success">
@@ -57,8 +58,8 @@
               
               </tbody>
           </table>
-          <a href="#" id="procesarPedido" class="btn btn-primary btn-block">Procesar Compra</a>
-          <a href="#" id="vaciar-carrito" class="btn btn-danger btn-block">Vaciar Carrito</a>
+          <a href="#" id="procesarPedido" class="btn btn-primary col-12">Procesar Compra</a>
+          <a href="#" id="vaciar-carrito" class="btn btn-danger col-12">Vaciar Carrito</a>
           </div>
       </li>
     </ul>    
